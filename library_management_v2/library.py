@@ -433,7 +433,7 @@ def main():
                     student_id = int(student_id)
                 except ValueError:
                     print("Invalid input for student ID. Please enter a valid integer.")
-                    return
+                    continue
             library.add_student(name, student_id)
         elif choice == "6":
             name = input("Enter student name: ")
@@ -474,7 +474,7 @@ def main():
                     book_id = int(book_id)
                 except ValueError:
                     print("Invalid input for student ID or book ID. Please enter valid integers.")
-                    return
+                    continue
             library.return_rental(name, student_id, book_id)
         elif choice == "11":
             student_id = input("Enter student ID to search rentals: ")
