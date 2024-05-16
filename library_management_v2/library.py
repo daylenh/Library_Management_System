@@ -266,7 +266,6 @@ class Library:
 
         # check if book is available
         if book_quantity > 0:
-            # Ensure rentals_dict uses sets
             if (student_name, student_id) not in self.rentals_dict:
                 self.rentals_dict[(student_name, student_id)] = set()
             elif isinstance(self.rentals_dict[(student_name, student_id)], list):
