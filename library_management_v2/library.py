@@ -266,8 +266,14 @@ class Library:
 
         # check if book is available
         if book_quantity > 0:
-            self.rentals_dict.setdefault((student_name, student_id), set()).add(book_id)
+            # Ensure rentals_dict uses sets
+            if (student_name, student_id) not in self.rentals_dict:
+                self.rentals_dict[(student_name, student_id)] = set()
+            elif isinstance(self.rentals_dict[(student_name, student_id)], list):
+                self.rentals_dict[(student_name, student_id)] = set(self.rentals_dict[(student_name, student_id)])
+            self.rentals_dict[(student_name, student_id)].add(book_id)
             book_quantity -= 1
+            self.book_dict[book_id]['quantity'] = book_quantity
             self.save_rentals()
             self.save_books()
             print(
